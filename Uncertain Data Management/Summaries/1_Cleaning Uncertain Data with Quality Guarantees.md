@@ -231,15 +231,154 @@ $$
 
 Lemma 2. $g(k, D, Q) < 0$ iff there exists $t_i \in \tau_k$ such that $p_i \in (0, 1)$. Otherwise $g(k, D, Q) = 0$ 
 
-- An x-tuples whose tuples' qualification probabilities are either 0 or 1 _does not need to be included in PWS Quality computation_
-
-
-
-# Proposed Solution
+- An x-tuples whose tuples' qualification probabilities are either 0 or 1 _does not need to be included in PWS Quality computation_. This is also the set of x-tuples whose 
 
 ---
 
-# Results
+## Derivation of x-form PWS Quality for PRQ
+
+The probability $q_j$ of getting $r_j$ is
+
+$$
+q_j = \prod_{t_i \in r_j} e_i \prod_{\tau_k \cap r_j = \phi} (1 - P_k)
+$$
+
+- In words: the probability $q_j$ of getting possible world solution $r_j$ is the product of the existential probability of each tuple in $r_j$ and the probability of non-occurance of any of x-tuples that 
+don't occur in $r_j$. 
+
+---
+
+- Note that we don't include x-tuples which have intersection but some tuples aren't in $r_j$ because in any possible world only one tuple can exist in $r_j$ from any $x_k$
+
+- Further, the qualification probability of $t_i$ denoted by $p_i$ can be derived from qualification probabilities of $r_j$s
+
+$$
+p_i = \sum_{j = 1 \wedge t_i \in r_j}^{d} q_i
+$$
+
+---
+
+## How does such a derivation help
+
+- There are atmost $m$ tuples in the final answer, (wouldn't there be $n$ tuples in the final answer given that the solution is pairs of $(t_i, p_i)s$)
+
+- There are exponential $q_i$s 
+
+- Therefore, an equation using the $p_i$s is easier to compute than an equation consisting of $q_i$s
+
+---
+
+## Deriving x-form for PMaxQ
+
+- All tuples in an x-tuple are sorted in descending order
+- $i$th tuples of $\tau_{k}$ = $t_{k,i}$
+- A distinct PW-result $r_j$ consists of tuples with same value denoted by $r_j.v$. Then, 
+
+$$
+q_j = \prod_{t_i \in r_j} e_i \prod_{\tau_k \cap r_j = \phi} Pr(\tau_k < r_j.v)
+$$
+
+where, $Pr(\tau_k < r_j.v)$ is the probability that $\tau_k$ has tuples with value less than $r_j.v$
+
+---
+
+Since all tuples are written in descending order, 
+
+$$
+Pr(\tau_k < r_j.v) = 1 - \sum_{l=1}^{s(j,k)} e_{k,l}
+$$
+
+where,
+
+$s(j,k)$ = integer in $[1, |\tau_k|]$ such that $v_{k,s(j,k)}$ is the smallest value greater than $r_j.v$
+
+---
+
+# Clearning Uncertain Data
+
+> The goal is to select the most appropriate set of x-tuples to be cleaned, under a stringent budget, in order to achieve the highest expected quality improvement.
+
+
+| $clean(\tau_k)$ |
+| --- |
+| Given an x-tuple $\tau_k$, $clean(\tau_k)$ replaces $\tau_k$ with an x-tuple that contains a single tuple: $\{ID_i, v_i, 1, k\}$ such that $ID_i$ and $v_i$ are the ID and querying attribute of some tuple $t_i$ that belongs to $\tau_k$|
+
+After $clean(\tau_k)$, $\tau_k$ becomes certain
+
+---
+
+> The goal is to obtain the set of x-tuples that, under a given budget, yields the most significant expected improvement in PWS-quality. This set of x-tuples is then selected to be cleaned.
+
+---
+
+### Notation
+
+- Cost of performing $clean(\tau_k)$: $c_k$
+
+- Budget allotted to query $Q$: $C$
+
+- Any set of x-tuples chosen from $D$, $X$: $\{\tau_1, ..., \tau_{|x|}\}$
+
+- $\vec{t}$: vector of dimension $|X|$ where kth dimension is a tuple from the kth x-tuple in $X$
+
+- $D'(\vec{t})$ is the database obtained post cleaning $X$ producing tuples in $\vec{t}$
+
+---
+
+For example, 
+
+$X = \{\tau_1, \tau_2 \}$, and $\tau_1 = \{t_0, t_1\}$ and $\tau_2 = \{t_2, t_3\}$, then possible values of $\vec{t}$ are $(t_0, t_2)$, $(t_0, t_3)$, $(t_1, t_2)$ and $(t_1, t_3)$
+
+---
+
+Expected quality of cleaning set $X$ is
+
+$$
+E(S(D'(\vec{t}), Q)) = \sum_{\vec{t} \in \tau_1 \times ... \times \tau_{|X|}} \prod_{t_i \in \vec{t}} e_i.S(D'(\vec{t}), Q)
+$$
+
+| Quality Improvement |
+|---|
+The quality improvement of cleaning a set of x-tuples $X$ is $I(X, D, Q) = E(S(D'(\vec{t}), Q)) - S(D, Q)$ |
+
+---
+
+### Problem Definition
+
+| The Data Cleaning Problem |
+|---|
+|Given a budget of $C$ units, choose a set of x-tuples $X$ from $D$ such that $I(X, D, Q)$ attains the highest value|
+
+Brute Force: Take all possible possible sets $X$, compute $I(X, D, Q)$ and retain that $X$ which results in the highest improvement
+
+**Problem 1**: Computing expected quality requires computations involving all possible combination of x-tuple tuples in $\vec{t}$
+
+**Problem 2**: Consider all possible $X$ is exponential 
+
+---
+
+## To Solve Problem 1: 
+
+Lemma 3. The quality improvement of cleaning a set of x-tuples $X$ is:
+
+$$
+I(X, D, Q) = -\sum_{k=1}^{|X|} g(k, D, Q)
+$$
+
+- $I(X, D, Q)$ is always non-negative since $g(k, D, Q)$ is always non-positive
+- 
+
+---
+
+## To Solve Problem 2: Finding Optimal set $B$
+
+Lemma 4. For any x-tuple $\tau_k \in B$, $\tau_k$ must satisfy the condition: there exists a $t_i \in \tau_k$ such that $(t_i, p_i)$ appears in the final answer of $Q$ with $p_i \in (0,1)$
+
+
+
+
+
+
 
 ---
 
