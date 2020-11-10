@@ -3,6 +3,8 @@ marp: true
 theme: gaia
 class: invert
 backgroundColor: black
+footer: "[Home](https://jayitha.github.io/Paper-Summaries/)"
+
 ---
 
 # Uncertain Data Management Systems: Paper Summaries

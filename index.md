@@ -3,13 +3,15 @@ marp: true
 theme: gaia
 class: invert
 backgroundColor: black
+footer: "[Home](https://jayitha.github.io/Paper-Summaries/)"
+
 ---
 
 # Summaries
 
 | Topic | Link |
 |---|---|
-| Uncertain Data Management | [Link](https://jayitha.github.io/Paper-Summaries/)
+| Uncertain Data Management | [Link](https://jayitha.github.io/Paper-Summaries/index.html#2)
 
 ---
 
