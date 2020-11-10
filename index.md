@@ -7,11 +7,18 @@ footer: "[Home](https://jayitha.github.io/Paper-Summaries/)"
 
 ---
 
+![bg right](cal_4.jpeg)
+# Hi !
+
+My name is **Jayitha Cherapanamjeri**
+
+---
+
 # Summaries
 
 | Topic | Link |
 |---|---|
-| Uncertain Data Management | [Link](https://jayitha.github.io/Paper-Summaries/index.html#2)
+| Uncertain Data Management | [Link](https://jayitha.github.io/Paper-Summaries/index.html#3)
 
 ---
 
