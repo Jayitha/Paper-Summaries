@@ -5,8 +5,16 @@ class: invert
 backgroundColor: black
 ---
 
-# Paper Summaries
+# Summaries
+
+| Topic | Link |
+|---|---|
+| Uncertain Data Management | [Link](https://jayitha.github.io/Paper-Summaries/)
+
+---
+
+### Uncertain Data Management Systems
 
 | Paper | Link |
 |---|---|
-| Cheng, Reynold, Jinchuan Chen, and Xike Xie. "Cleaning uncertain data with quality guarantees." Proceedings of the VLDB Endowment 1.1 (2008): 722-735. | [Link](https://jayitha.github.io/Paper-Summaries/Uncertain%20Data%20Management/Summaries/1_Cleaning%20Uncertain%20Data%20with%20Quality%20Guarantees.html)|
+| Cleaning Uncertain Data with Quality Guarantees | [Link](https://jayitha.github.io/Paper-Summaries/Uncertain%20Data%20Management/Summaries/1_Cleaning%20Uncertain%20Data%20with%20Quality%20Guarantees.html)|
