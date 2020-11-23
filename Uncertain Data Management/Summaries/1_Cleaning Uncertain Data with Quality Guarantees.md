@@ -3,13 +3,11 @@ marp: true
 theme: gaia
 class: invert
 backgroundColor: black
-footer: "[Home](https://jayitha.github.io/Paper-Summaries/)"
 
 ---
 
 # Uncertain Data Management Systems: Paper Summaries
 
-## Paper 1: 
 _Cheng, Reynold, Jinchuan Chen, and Xike Xie. "Cleaning uncertain data with quality guarantees." Proceedings of the VLDB Endowment 1.1 (2008): 722-735._
 
 Link To Paper: [Link](http://www.vldb.org/pvldb/vol1/1453935.pdf)
@@ -51,7 +49,6 @@ Link To Paper: [Link](http://www.vldb.org/pvldb/vol1/1453935.pdf)
 ---
 
 ### Example
-
 ![](1_ud_example.png)
 
 - Entities / x-tuples  = $\{a(a_1, a_2), b(b_1, b_2), c(c_1, c_2, c_3), d(d_1)\}$
@@ -95,7 +92,7 @@ Ex: MAX MIN queries
 
 |Probabilistic Maximum Query (PMaxQ)|
 |---|
-| A PMaxQ returns a set of tuples $(t_i, p_i)$, where $p_i$ the qualification probability of $t_i$, is the non-zero probability that $v_i \geq v_j$ where $j \not = i \wedge j = 1, ..., n$ |
+| A PMaxQ returns a set of tuples $(t_i, p_i)$, where $p_i$ the qualification probability of $t_i$, is the non-zero probability that $v_i \geq v_j$ where $j \ne i \wedge j = 1, ..., n$ |
 
 ---
 
@@ -109,10 +106,9 @@ for i:1-n:
 ---
 
 ## PWS Quality
-<!--Left hand side -->
 ![bg](black.png)
-<!--Right hand side -->
 ![bg](1_possib_worlds.png)
+
 
 1: Expanded to set of _possible worlds_
 2: Query executed on each world
@@ -177,7 +173,7 @@ answer (Step B)
 
 - You can see that the PWS-quality is the negative of entropy
 
-- Ranges from $-\log d$ (most ambiguous) to $0$ (;east ambiguous)
+- Ranges from $-\log d$ (most ambiguous) to $0$ (least ambiguous)
 
 - It is also important to note that
 
@@ -262,7 +258,7 @@ $$
 
 ## How does such a derivation help
 
-- There are atmost $m$ tuples in the final answer, (wouldn't there be $n$ tuples in the final answer given that the solution is pairs of $(t_i, p_i)s$)
+- There are atmost $m$ tuples in the final answer. 
 
 - There are exponential $q_i$s 
 
@@ -368,13 +364,15 @@ I(X, D, Q) = -\sum_{k=1}^{|X|} g(k, D, Q)
 $$
 
 - $I(X, D, Q)$ is always non-negative since $g(k, D, Q)$ is always non-positive
-- 
+
 
 ---
 
 ## To Solve Problem 2: Finding Optimal set $B$
 
 Lemma 4. For any x-tuple $\tau_k \in B$, $\tau_k$ must satisfy the condition: there exists a $t_i \in \tau_k$ such that $(t_i, p_i)$ appears in the final answer of $Q$ with $p_i \in (0,1)$
+
+- $Z$ - number of x-tuples that satisfy Lemma 4
 
 
 
